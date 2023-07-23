@@ -43,25 +43,6 @@ function view($path, $attributes = [])
     require base_path('views/' . $path);
 }
 
-function login($user)
-{
-    $_SESSION['user'] = [
-        'email' => $user['email']
-    ];
-
-    session_regenerate_id(true);
-}
-
-function logout()
-{
-    $_SESSION = [];
-    session_destroy();
-
-    $params = session_get_cookie_params();
-
-    setcookie('PHPSESSID', '', time() - 3600, $params['path'], $params['domain'], $params['secure'], $params['httponly']);
-}
-
 function getuserid($db)
 {
     $user_id = $db->query('select id from users where email = :email', [
@@ -71,4 +52,15 @@ function getuserid($db)
     $user_id = $user_id[0]['id'];
 
     return $user_id;
+}
+
+function redirect($path)
+{
+    header("location: {$path}");
+    exit();
+}
+
+function old($key, $default = '')
+{
+    Session::get('old')[$key] ?? $default;
 }

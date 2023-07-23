@@ -1,0 +1,16 @@
+{
+    "name": "ayoub/demo",
+    "authors": [
+        {
+            "name": "AyoubMS",
+            "email": "chahayb563@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core",
+            "Http\\": "Http"
+        }
+    }
+}

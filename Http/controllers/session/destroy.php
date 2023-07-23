@@ -2,9 +2,10 @@
 
 // log the user out.
 
-use function Core\logout;
 
-logout();
+use Core\Authenticator;
+
+(new Authenticator)->logout();
 
 header('location: /');
 exit();
