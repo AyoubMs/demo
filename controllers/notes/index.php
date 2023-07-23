@@ -10,9 +10,15 @@ $db = App::resolve(Database::class);
 
 $heading = 'Notes';
 
-$notes = $db->query('select * from notes where user_id = 1')->get();
+$user_id = $db->query('select id from users where email = :email', [
+    ':email' => $_SESSION['user']['email']
+])->get();
 
-//dd($notes);
+$user_id = $user_id[0]['id'];
+
+$notes = $db->query('select * from notes where user_id = :user_id', [
+    ':user_id' => $user_id
+])->get();
 
 view('notes/index.view.php', [
     'heading' => "Notes",

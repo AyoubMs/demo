@@ -4,6 +4,7 @@ use Core\App;
 use Core\Validator;
 use Core\Database;
 use function Core\base_path;
+use function Core\getuserid;
 use function Core\view;
 
 $db = App::resolve(Database::class);
@@ -24,7 +25,7 @@ if (!empty($errors)) {
 if (empty($errors)) {
     $db->query('INSERT INTO notes(body, user_id) VALUES (:body, :user_id)', [
         'body' => $_POST['body'],
-        'user_id' => 1
+        'user_id' => getuserid($db)
     ]);
 
     header('location: /notes');

@@ -2,6 +2,8 @@
 
 use function Core\base_path;
 
+session_start();
+
 const BASE_PATH = __DIR__ . '/../';
 
 require BASE_PATH . 'Core/functions.php';
@@ -24,15 +26,3 @@ $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 $method = $_POST['_method'] ?? $_SERVER['REQUEST_METHOD'];
 
 $router->route($uri, $method);
-
-//
-//routeToController($uri, $routes);
-
-
-//
-//$id = $_GET['id'];
-//$query ="select * from notes where id = :id";
-//
-//$notes = $db->query($query, [':id' => $id])->fetch();
-
-//dd($notes);

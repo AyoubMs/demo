@@ -4,11 +4,12 @@ use Core\App;
 use Core\Database;
 use Core\Validator;
 use function Core\authorize;
+use function Core\getuserid;
 use function Core\view;
 
 $db = App::resolve(Database::class);
 
-$currentUserId = 1;
+$currentUserId = getuserid($db);;
 
 // fing the corresponding note
 $note = $db->query('select * from notes where id = :id', [
